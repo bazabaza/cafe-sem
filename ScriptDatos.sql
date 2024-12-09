@@ -42,41 +42,36 @@ INSERT INTO DIRECCIONES (ID_DIRECCION, ID_CLIENTE, CALLE, NUMERO, CIUDAD, CODIGO
 VALUES (2, 1, 'Avenida de la Paz', '5', 'Barcelona', '08002', 'Oficina');
 
 
---productos
-
-INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION)
-VALUES (1, 'Café en Grano Premium', 12.50, 100, 'cafe_en_grano_premium.jpg', 'Descripcion del producto 1');
-
-INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION)
-VALUES (2, 'Café Molido Clásico', 9.99, 200, 'cafe_molido_clasico.jpg', 'Descripcion del producto 1');
-
-INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION)
-VALUES (3, 'Cápsulas de Café Intenso', 15.99, 150, 'capsulas_cafe_intenso.jpg', 'Descripcion del producto 1');
-
-INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION)
-VALUES (4, 'Taza Cerámica Personalizada', 6.99, 50, 'taza_ceramica.jpg', 'Descripcion del producto 1');
-
-INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION)
-VALUES (5, 'Cafetera Italiana', 29.99, 30, 'cafetera_italiana.jpg', 'Descripcion del producto 1');
-
 -- tipo categoria
 
-INSERT INTO TIPO_CATEGORIA (CATEGORIA, ID_PRODUCTO, DESCRIPCION)
-VALUES ('Café', 1, 'Bolsa de café en grano de alta calidad');
+INSERT INTO TIPO_CATEGORIA (ID_CATEGORIA, DESCRIPCION)
+VALUES (1, 'Café');
 
-INSERT INTO TIPO_CATEGORIA (CATEGORIA, ID_PRODUCTO, DESCRIPCION)
-VALUES ('Café', 2, 'Café molido para cafeteras tradicionales');
+INSERT INTO TIPO_CATEGORIA (ID_CATEGORIA, DESCRIPCION)
+VALUES (2, 'Cápsulas');
 
-INSERT INTO TIPO_CATEGORIA (CATEGORIA, ID_PRODUCTO, DESCRIPCION)
-VALUES ('Cápsulas', 3, 'Cápsulas compatibles con cafeteras');
+INSERT INTO TIPO_CATEGORIA (ID_CATEGORIA, DESCRIPCION)
+VALUES (3, 'Accesorios');
 
-INSERT INTO TIPO_CATEGORIA (CATEGORIA, ID_PRODUCTO, DESCRIPCION)
-VALUES ('Accesorios', 4, 'Tazas de cerámica para café');
+INSERT INTO TIPO_CATEGORIA (ID_CATEGORIA, DESCRIPCION)
+VALUES (4, 'Cafeteras');
 
-INSERT INTO TIPO_CATEGORIA (CATEGORIA, ID_PRODUCTO, DESCRIPCION)
-VALUES ('Cafeteras', 5, 'Cafeteras italianas de diseño clásico');
+--productos
 
+INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION, ID_CATEGORIA)
+VALUES (1, 'Café en Grano Premium', 12.50, 100, 'cafe_en_grano_premium.jpg', 'Bolsa de café en grano de alta calidad', 1);
 
+INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION, ID_CATEGORIA)
+VALUES (2, 'Café Molido Clásico', 9.99, 200, 'cafe_molido_clasico.jpg', 'Café molido para cafeteras tradicionales', 1);
+
+INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION, ID_CATEGORIA)
+VALUES (3, 'Cápsulas de Café Intenso', 15.99, 150, 'capsulas_cafe_intenso.jpg', 'Cápsulas compatibles con cafeteras', 2);
+
+INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION, ID_CATEGORIA)
+VALUES (4, 'Taza Cerámica Personalizada', 6.99, 50, 'taza_ceramica.jpg', 'Tazas de cerámica para café', 3);
+
+INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION, ID_CATEGORIA)
+VALUES (5, 'Cafetera Italiana', 29.99, 30, 'cafetera_italiana.jpg', 'Cafeteras italianas de diseño clásico', 4);
 
 -- pedido
 
