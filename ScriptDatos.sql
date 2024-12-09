@@ -98,10 +98,4 @@ INSERT INTO DETALLE_PEDIDO (ID_DETALLE, ID_PEDIDO, ID_PRODUCTO, CANTIDAD, PRECIO
 VALUES (4, 2, 5, 1, 29.99); 
 
 
-
-select * from user_errors where type = 'TRIGGER' and name = 'PEDIDOS_BI_TRIGGER' 
--- PLS-00103: Encountered the symbol "/" The symbol "/" was ignored.
-
-
-
 commit;
