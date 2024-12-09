@@ -15,3 +15,16 @@ class Producto:
             print("Error: ", error)
 
         return cursor
+
+    def detalleProducto(self, id):
+        cursor = self.connection.cursor()
+
+        try:
+            consulta = "SELECT ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION, ID_CATEGORIA"
+            consulta += " FROM PRODUCTOS WHERE ID_PRODUCTO = "+ str(id)
+            cursor.execute(consulta)
+
+        except self.connection.Error as error:
+            print("Error: ", error)
+
+        return cursor

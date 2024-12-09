@@ -16,3 +16,14 @@ def listadoProductos(request):
     }
 
     return render(request, "listadoProductos.html", contexto)
+
+def detalleProducto(request):
+    p = Producto()
+    id = 4
+    info = p.detalleProducto(id)
+
+    contexto = {
+        'producto': info
+    }
+
+    return render(request, "detalleProducto.html", contexto)
