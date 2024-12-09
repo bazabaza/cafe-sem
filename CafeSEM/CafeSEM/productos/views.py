@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from clientes.models import Producto
+from productos.models import Producto
 
 def index(request):
     return render(request, "index.html")
+
+def menu(request):
+    return render(request, "menu.html")
 
 def listadoProductos(request):
     p = Producto()
