@@ -44,20 +44,20 @@ VALUES (2, 1, 'Avenida de la Paz', '5', 'Barcelona', '08002', 'Oficina');
 
 --productos
 
-INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN)
-VALUES (1, 'Café en Grano Premium', 12.50, 100, 'cafe_en_grano_premium.jpg');
+INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION)
+VALUES (1, 'Café en Grano Premium', 12.50, 100, 'cafe_en_grano_premium.jpg', 'Descripcion del producto 1');
 
-INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN)
-VALUES (2, 'Café Molido Clásico', 9.99, 200, 'cafe_molido_clasico.jpg');
+INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION)
+VALUES (2, 'Café Molido Clásico', 9.99, 200, 'cafe_molido_clasico.jpg', 'Descripcion del producto 1');
 
-INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN)
-VALUES (3, 'Cápsulas de Café Intenso', 15.99, 150, 'capsulas_cafe_intenso.jpg'); 
+INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION)
+VALUES (3, 'Cápsulas de Café Intenso', 15.99, 150, 'capsulas_cafe_intenso.jpg', 'Descripcion del producto 1');
 
-INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN)
-VALUES (4, 'Taza Cerámica Personalizada', 6.99, 50, 'taza_ceramica.jpg');
+INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION)
+VALUES (4, 'Taza Cerámica Personalizada', 6.99, 50, 'taza_ceramica.jpg', 'Descripcion del producto 1');
 
-INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN)
-VALUES (5, 'Cafetera Italiana', 29.99, 30, 'cafetera_italiana.jpg');
+INSERT INTO PRODUCTOS (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION)
+VALUES (5, 'Cafetera Italiana', 29.99, 30, 'cafetera_italiana.jpg', 'Descripcion del producto 1');
 
 -- tipo categoria
 
