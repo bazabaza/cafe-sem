@@ -1,0 +1,38 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
+  <div class="container">
+    <a class="navbar-brand" href="#"
+      ><img
+        id="MDB-logo"
+        src="{% static 'images/logo.png' %}"
+        alt="MDB Logo"
+        draggable="false"
+        height="100"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="/tienda/gestionproductos"><i class="fas fa-plus-circle pe-2"></i>Gestion Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="#!"><i class="fas fa-shopping-basket pe-2"></i>Pedidos</a>
+        </li>
+        <li class="nav-item ms-3">
+          <a class="btn btn-black btn-rounded" href="/clientes/cuenta/iniciar_sesion"> <i class="fa fa-user-circle pe-2" aria-hidden="true"></i> Perfil</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Navbar -->
