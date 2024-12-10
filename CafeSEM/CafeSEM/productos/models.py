@@ -8,6 +8,18 @@ class Producto:
         cursor = self.connection.cursor()
 
         try:
+            consulta = "SELECT ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN  FROM PRODUCTOS WHERE STOCK>0"
+            cursor.execute(consulta)
+
+        except self.connection.Error as error:
+            print("Error: ", error)
+
+        return cursor
+
+    def listadoGestionProductos(self):
+        cursor = self.connection.cursor()
+
+        try:
             consulta = "SELECT ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN  FROM PRODUCTOS"
             cursor.execute(consulta)
 
@@ -46,6 +58,33 @@ class Producto:
             print("Error: ", error)
             numeroRegistros = error
         return numeroRegistros
+
+
+    def bajaProducto(self, idProducto):
+        cursor = self.connection.cursor()
+        try:
+            consulta = ("UPDATE productos SET STOCK='0' WHERE ID_PRODUCTO=:P1")
+
+            cursor.execute(consulta, (idProducto,))
+            self.connection.commit()
+
+        except self.connection.Error as error:
+            print("Error: ", error)
+
+        return cursor
+
+    def modificarProducto(self, nombre, precio, stock, urlImagen,  descripcion, categoriaCod, idProducto):
+        cursor = self.connection.cursor()
+        try:
+            consulta = ("UPDATE productos SET NOMBRE=:P1, PRECIO=:P2, STOCK=:P3, IMAGEN=:P4, DESCRIPCION=:P5, ID_CATEGORIA=:P6 WHERE ID_PRODUCTO=:P7")
+
+            cursor.execute(consulta, (nombre, precio, stock, urlImagen,  descripcion, categoriaCod, idProducto))
+            self.connection.commit()
+
+        except self.connection.Error as error:
+            print("Error: ", error)
+
+        return cursor
 
 
 class Categoria:

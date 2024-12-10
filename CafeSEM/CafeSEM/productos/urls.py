@@ -8,5 +8,8 @@ urlpatterns=[
     path('gestionproductos', views.gestionProductos, name='gestionProductos'),
     path('guardarproductos', views.guardarProducto, name='gestionProductos'),
     path('detalle', views.detalleProducto, name="detalleProducto"),
+    path('baja', views.bajaProducto, name="bajaProducto"),
+    path('modificarProducto', views.modificarProducto, name="detalleProducto"),
+    path('modificarProductoDatos', views.modificarProductoDatos, name="detalleProducto"),
     path('menu', views.menu, name='menu')
 ]
