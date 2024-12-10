@@ -19,17 +19,22 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-    <div class="container" style="margin-top:150px">
+    <div class="container" style="margin-top: 150px;">
         <h1 class="text-center">Login</h1>
-
-            <form method="post" action="/clientes/cuenta/verificar_contrasenia">
-                {% csrf_token %}
-                <p>E-mail: <input type="text" name="email" /></p>
-                <p>Contraseña: <input type="password" name="contrasenia" /></p>
-                <p><input type="submit" value="Entrar"></p>
-            </form>
-
-
+        <form method="post" action="/clientes/cuenta/verificar_contrasenia">
+            {% csrf_token %}
+            <div class="form-group" style="max-width: 300px; margin: auto;">
+                <label for="email">E-mail:</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Introduce tu email">
+            </div>
+            <div class="form-group" style="max-width: 300px; margin: auto;">
+                <label for="contrasenia">Contraseña:</label>
+                <input type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="Introduce tu contraseña">
+            </div>
+            <div class="form-group text-center" style="margin-top: 20px;">
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </div>
+        </form>
     </div>
 </body>
 </html>
