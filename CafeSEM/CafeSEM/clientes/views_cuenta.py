@@ -41,3 +41,16 @@ def verificar_contrasenia(request):
         response.set_cookie(key='email', value=email)
 
     return response
+
+
+def view_cuenta(request):
+    email = request.COOKIES.get('email')
+    print(email)
+
+    usario_model = Usario()
+    cursor_direcciones = usario_model.get_direcciones(email)
+
+    contexto = dict()
+    contexto['direcciones'] = cursor_direcciones
+
+    return render(request, "clientes/cuenta/view_cuenta.html", contexto)
