@@ -1,6 +1,6 @@
 import re
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from clientes.models import Usario
 
 
