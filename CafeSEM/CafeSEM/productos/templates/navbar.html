@@ -29,7 +29,17 @@
           <a class="nav-link mx-2" href="#!"><i class="fas fa-shopping-basket pe-2"></i>Carrito</a>
         </li>
         <li class="nav-item ms-3">
-          <a class="btn btn-black btn-rounded" href="/clientes/cuenta/iniciar_sesion"> <i class="fa fa-user-circle pe-2" aria-hidden="true"></i> Login</a>
+          <script>
+              function checkCookieEmail() {
+                  let emailCookie = document.cookie.split('; ').find(row => row.startsWith('email='));
+                  if (emailCookie) {
+                      document.write('<a class="btn btn-black btn-rounded" href="/clientes/cuenta/view"> <i class="fa fa-user-circle pe-2" aria-hidden="true"></i>Mí cuenta</a>');
+                  } else {
+                      document.write('<a class="btn btn-black btn-rounded" href="/clientes/cuenta/iniciar_sesion"> <i class="fa fa-user-circle pe-2" aria-hidden="true"></i>Login</a>');
+                  }
+              }
+              checkCookieEmail();
+          </script>
         </li>
       </ul>
     </div>
