@@ -1,7 +1,10 @@
 from django.shortcuts import render
-from productos.models import Producto
+from productos.models import Producto, Categoria
 
 def index(request):
+    return render(request, "index.html")
+
+def index2(request):
     return render(request, "index.html")
 
 def menu(request):
@@ -16,6 +19,41 @@ def listadoProductos(request):
     }
 
     return render(request, "listadoProductos.html", contexto)
+
+def gestionProductos(request):
+    p = Producto()
+    listadoProductos = p.listadoProductos()
+    c = Categoria()
+    listadoCategorias=c.listadoCategorias()
+    contexto = {
+        'listadoProductos': listadoProductos,
+        'listadoCategorias': listadoCategorias
+    }
+
+    return render(request, "gestionProductos.html", contexto)
+
+def guardarProducto(request):
+
+    nombre=request.POST['nombre']
+    precio = request.POST['precio']
+    stock = request.POST['stock']
+    descripcion = request.POST['descripcion']
+    categoria = request.POST['categoria']
+
+
+
+    p = Producto()
+    p.altaProducto(nombre,precio,stock,'www.ase.es',descripcion, categoria)
+
+    listadoProductos = p.listadoProductos()
+    c = Categoria()
+    listadoCategorias = c.listadoCategorias()
+    contexto = {
+        'listadoProductos': listadoProductos,
+        'listadoCategorias': listadoCategorias
+    }
+
+    return render(request, "gestionProductos.html", contexto)
 
 def detalleProducto(request):
     p = Producto()
