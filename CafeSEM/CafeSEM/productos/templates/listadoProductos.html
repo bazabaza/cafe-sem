@@ -10,22 +10,25 @@
 <body>
     <div class="container my-4">
         <h1 class="text-center">Listado de Productos</h1>
+
         <div class="row">
             {% for idProd, nombre, precio, stock, imagen in listado %}
-            <div class="col-md-4">
-                <div class="card my-2">
-                    <img src="{% static 'images/' %}{{imagen}}" class="card-img-top" alt="{{nombre}}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{nombre}}</h5>
-                        <p class="card-text">aquí una descripción</p>
-                        <p class="card-text"><strong>{{precio}}</strong></p>
-                        <a href="#" class="btn btn-primary">Comprar</a>
-                        <a href="#" class="btn btn-primary">Ver Detalles</a>
+                <div class="col-md-4">
+                    <div class="card my-2">
+                        <img src="{% static 'images/' %}{{imagen}}" class="card-img-top" alt="{{nombre}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{nombre}}</h5>
+                            <p class="card-text">aquí una descripción</p>
+                            <p class="card-text"><strong>{{precio}}</strong></p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                            <a href="detalle?id={{idProd}}" class="btn btn-primary">Ver Detalles</a>
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
+
+
     </div>
 </body>
 </html>

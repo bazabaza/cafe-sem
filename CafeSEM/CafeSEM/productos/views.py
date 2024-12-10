@@ -19,7 +19,7 @@ def listadoProductos(request):
 
 def detalleProducto(request):
     p = Producto()
-    id = 4
+    id = request.GET["id"]
     info = p.detalleProducto(id)
 
     contexto = {
