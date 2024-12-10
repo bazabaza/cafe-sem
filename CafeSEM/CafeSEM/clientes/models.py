@@ -7,7 +7,7 @@ import cx_Oracle
 
 class Usario:
     def __init__(self):
-        self.connection = cx_Oracle.connect("system", "password", "localhost/XE")
+        self.connection = cx_Oracle.connect("system", "pythonoracle", "localhost/XE")
 
     def get_usario(self, email):
         cursor = self.connection.cursor()
