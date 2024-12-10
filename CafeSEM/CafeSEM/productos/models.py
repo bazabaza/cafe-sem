@@ -33,9 +33,9 @@ class Producto:
         cursor = self.connection.cursor()
         try:
             ConsultaAlta = ("INSERT INTO productos (ID_PRODUCTO, NOMBRE, PRECIO, STOCK, IMAGEN, DESCRIPCION, ID_CATEGORIA)"
-                            "VALUES (:P1, :P2, :P3, :P4, :P5, :P6, :P7)")
+                            "VALUES (PRODUCTOS_SEQ.NEXTVAL, :P2, :P3, :P4, :P5, :P6, :P7)")
 
-            datosAlta = (6,nombre, precio, stock, urlImagen, descripcion, categoriaCod)
+            datosAlta = (nombre, precio, stock, urlImagen, descripcion, categoriaCod)
             print(datosAlta)
             cursor.execute(ConsultaAlta, datosAlta)
             numeroRegistros = cursor.rowcount
