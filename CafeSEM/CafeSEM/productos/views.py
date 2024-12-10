@@ -61,7 +61,7 @@ def bajaProducto(request):
     id = request.GET["id"]
     p.bajaProducto(id)
 
-    listadoProductos = p.listadoProductos()
+    listadoProductos = p.listadoGestionProductos()
     c = Categoria()
     listadoCategorias = c.listadoCategorias()
     contexto = {
