@@ -22,7 +22,7 @@ def listadoProductos(request):
 
 def gestionProductos(request):
     p = Producto()
-    listadoProductos = p.listadoProductos()
+    listadoProductos = p.listadoGestionProductos()
     c = Categoria()
     listadoCategorias=c.listadoCategorias()
     contexto = {
@@ -39,11 +39,12 @@ def guardarProducto(request):
     stock = request.POST['stock']
     descripcion = request.POST['descripcion']
     categoria = request.POST['categoria']
+    imagen = request.POST['imagen']
 
 
 
     p = Producto()
-    p.altaProducto(nombre,precio,stock,'www.ase.es',descripcion, categoria)
+    p.altaProducto(nombre,precio,stock,imagen,descripcion, categoria)
 
     listadoProductos = p.listadoProductos()
     c = Categoria()
@@ -54,6 +55,59 @@ def guardarProducto(request):
     }
 
     return render(request, "gestionProductos.html", contexto)
+
+def bajaProducto(request):
+    p = Producto()
+    id = request.GET["id"]
+    p.bajaProducto(id)
+
+    listadoProductos = p.listadoProductos()
+    c = Categoria()
+    listadoCategorias = c.listadoCategorias()
+    contexto = {
+        'listadoProductos': listadoProductos,
+        'listadoCategorias': listadoCategorias
+    }
+
+    return render(request, "gestionProductos.html", contexto)
+
+def modificarProducto(request):
+    p = Producto()
+    id = request.GET["id"]
+    print(id)
+    info = p.detalleProducto(id)
+    c = Categoria()
+    categorias= c.listadoCategorias()
+
+    contexto = {
+        'producto': info,
+        'listadoCategorias': categorias
+    }
+
+    return render(request, "modificarProducto.html", contexto)
+
+def modificarProductoDatos(request):
+    idProd = request.POST['id_prod']
+    nombre = request.POST['nombre']
+    precio = request.POST['precio']
+    stock = request.POST['stock']
+    descripcion = request.POST['descripcion']
+    categoria = request.POST['categoria']
+    imagen = request.POST['imagen']
+
+    p = Producto()
+    p.modificarProducto(nombre, precio, stock, imagen, descripcion, categoria, idProd, )
+
+    listadoProductos = p.listadoGestionProductos()
+    c = Categoria()
+    listadoCategorias = c.listadoCategorias()
+    contexto = {
+        'listadoProductos': listadoProductos,
+        'listadoCategorias': listadoCategorias
+    }
+
+    return render(request, "gestionProductos.html", contexto)
+
 
 def detalleProducto(request):
     p = Producto()
