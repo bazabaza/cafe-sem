@@ -17,26 +17,25 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
 
 </head>
-<body>
+<body style="background-color: #6f4e37; color: wheat;">
         <div>
             {% include 'navbar.html' %}
         </div>
 
-        </br></br></br></br></br>
         <div class="container my-4" style="margin-top: 8.5rem !important;">
             <h1 class="text-center">Listado de Productos</h1>
 
             <div class="row">
                 {% for idProd, nombre, precio, stock, imagen in listado %}
                     <div class="col-md-4">
-                        <div class="card my-2">
+                        <div class="card my-2" style="background-color: antiquewhite;">
                             <img src="{% static 'images/' %}{{imagen}}" class="card-img-top" alt="{{nombre}}">
                             <div class="card-body">
                                 <h5 class="card-title">{{nombre}}</h5>
                                 <p class="card-text">aquí una descripción</p>
                                 <p class="card-text"><strong>{{precio}}</strong></p>
-                                <a href="#" class="btn btn-primary">Comprar</a>
-                                <a href="detalle?id={{idProd}}" class="btn btn-primary">Ver Detalles</a>
+                                <a href="#" class="btn btn-primary" style="background-color: sienna; border: sienna;">Comprar</a>
+                                <a href="detalle?id={{idProd}}" class="btn btn-primary" style="background-color: sienna; border: sienna;">Ver Detalles</a>
                             </div>
                         </div>
                     </div>

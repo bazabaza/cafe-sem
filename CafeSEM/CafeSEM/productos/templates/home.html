@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css'%}">
+</head>
+<body>
+    <header>
+        <h1>Tienda de Café</h1>
+        <p>Descubre los mejores granos de café del mundo</p>
+    </header>
+    <nav>
+        <a href="tienda">Inicio</a>
+        <a href="productos">Productos</a>
+        <a href="/clientes/cuenta/iniciar_sesion">Area de clientes</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+    <section class="hero">
+        <h1>El mejor café, directo a tu puerta</h1>
+    </section>
+
+    <section class="productos" id="productos">
+        <h2>Nuestros Productos</h2>
+        <div class="productos-grid">
+            <div class="producto">
+                <img src="{% static 'images/sacoCaffe.jpg' %}" alt="Café 1" style="width: 300px; height: 300px;">
+                <h3>Café</h3>
+                <p>Un café de origen único con sabor excepcional.</p>
+            </div>
+            <div class="producto">
+                <img src="{% static 'images/accesorios.jpg' %}" alt="Café 2" style="width: 300px; height: 300px;">
+                <h3>Accesorios</h3>
+                <p>Todo lo necesario para disfrutar del mejor café</p>
+            </div>
+            <div class="producto">
+                <img src="{% static 'images/cafeteras.jpg' %}" alt="Café 3" style="width: 300px; height: 300px;">
+                <h3>Cafeteras</h3>
+                <p>Las mejores máquinas del mercado</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Tienda de Café. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

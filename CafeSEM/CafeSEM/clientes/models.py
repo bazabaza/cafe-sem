@@ -1,9 +1,4 @@
-from django.db import models
-
-# Create your models here.
-
 import cx_Oracle
-
 
 class Usario:
     def __init__(self):

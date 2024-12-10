@@ -2,7 +2,7 @@ from django.shortcuts import render
 from productos.models import Producto, Categoria
 
 def index(request):
-    return render(request, "index.html")
+    return render(request, "home.html")
 
 def index2(request):
     return render(request, "index.html")
