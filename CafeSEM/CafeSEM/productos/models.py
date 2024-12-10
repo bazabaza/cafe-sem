@@ -2,7 +2,7 @@ import cx_Oracle
 
 class Producto:
     def __init__(self):
-        self.connection = cx_Oracle.connect("system", "Mananas", "localhost/XE")
+        self.connection = cx_Oracle.connect("system", "pythonoracle", "localhost/XE")
 
     def listadoProductos(self):
         cursor = self.connection.cursor()
@@ -51,7 +51,7 @@ class Producto:
 class Categoria:
 
     def __init__(self):
-            self.connection = cx_Oracle.connect("system", "Mananas", "localhost/XE")
+            self.connection = cx_Oracle.connect("system", "pythonoracle", "localhost/XE")
 
     def listadoCategorias(self):
         cursor = self.connection.cursor()
