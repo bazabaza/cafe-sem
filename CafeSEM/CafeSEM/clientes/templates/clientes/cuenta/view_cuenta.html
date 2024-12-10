@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css'%}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Material Design for Bootstrap</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+
+    <style>
+        .direccion-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .direccion-card h3 {
+            margin-top: 0;
+        }
+    </style>
+
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container" style="margin-top: 150px; width: 600px;">
+        <h1 class="text-center">Cuenta</h1>
+        <h2>Direcciones</h2>
+        {% for id_direccion, id_cliente, calle, numero, ciudad, codigo_postal, apodo_direccion in direcciones %}
+        <div class="direccion-card">
+            <h3>{{ apodo_direccion }}</h3>
+            <p>{{ calle }}, {{ numero }}<br>
+            {{ ciudad }}<br>
+            {{ codigo_postal }}</p>
+            <a href="#" class="btn btn-danger btn-sm">Remover</a>
+        </div>
+        {% endfor %}
+        <a href="#" class="btn btn-primary">Añadir nueva</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script></body>
+</html>
