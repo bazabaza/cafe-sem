@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar sesión</title>
+</head>
+<body>
+<h1>Iniciar sesión</h1>
+<form method="post" action="/clientes/cuenta/verificar_contrasenia">
+    {% csrf_token %}
+    <p>E-mail: <input type="text" name="email" /></p>
+    <p>Contraseña: <input type="password" name="contrasenia" /></p>
+    <p><input type="submit" value="Entrar"></p>
+</form>
+
+</body>
+</html>

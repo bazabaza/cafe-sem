@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar sesión</title>
+</head>
+<body>
+<h1>
+    {% if error %}
+        {{ error }}
+    {% else %}
+        {% if email %}
+            Ha iniciado sesión correctamente para {{ email }}
+        {% else %}
+            E-mail o contraseña son incorrectos
+        {% endif %}
+    {% endif %}
+</h1>
+
+</body>
+</html>
