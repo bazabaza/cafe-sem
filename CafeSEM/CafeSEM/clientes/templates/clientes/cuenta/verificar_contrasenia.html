@@ -28,7 +28,11 @@
                 {% if email %}
                     Ha iniciado sesión correctamente para {{ email }}
                     <script>
-                        window.location.href = "/tienda/productos";
+                        {% if tipo_usuario == 'cliente' %}
+                            window.location.href = "/tienda/productos";
+                        {% else %}
+                            window.location.href = "/tienda/gestionproductos";
+                        {% endif %}
                     </script>
                 {% else %}
                     E-mail o contraseña son incorrectos

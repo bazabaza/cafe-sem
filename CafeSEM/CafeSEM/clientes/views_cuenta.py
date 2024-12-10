@@ -34,6 +34,7 @@ def verificar_contrasenia(request):
 
     if cursor and 'error' not in contexto:
         contexto['email'] = row[2]
+        contexto['tipo_usuario'] = row[4]
 
     response = render(request, "clientes/cuenta/verificar_contrasenia.html", contexto)
     if cursor and 'error' not in contexto:
