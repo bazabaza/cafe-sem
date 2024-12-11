@@ -49,6 +49,108 @@ class Carrito:
 
         return cursor
 
+    def getDirecciones(self, idUsuario):
+        cursor = self.connection.cursor()
+
+        try:
+            consulta = ("SELECT ID_DIRECCION, APODO_DIRECCION, CALLE, NUMERO, CIUDAD, CODIGO_POSTAL "
+                        "FROM DIRECCIONES WHERE ID_CLIENTE =" + str(idUsuario))
+
+            cursor.execute(consulta)
+
+        except self.connection.Error as error:
+            print("Error: ", error)
+
+        return cursor
+
+    def cambiarDireccion(self, nuevaDireccion):
+        cursor = self.connection.cursor()
+        mensaje = "-1"
+
+        try:
+            consulta = "UPDATE PEDIDOS SET ID_DIRECCION = :p1 WHERE ID_PEDIDO = :p2"
+
+            cursor.execute(consulta, nuevaDireccion)
+
+            if cursor.rowcount > 0:
+                mensaje = "0"
+            else:
+                mensaje = "-1"
+
+            self.connection.commit()
+
+        except self.connection.Error as error:
+            print("Error: ", error)
+
+        cursor.close()
+        self.connection.close()
+
+        return mensaje
+
+    def terminarPedido(self, datos):
+        cursor = self.connection.cursor()
+        mensaje = "-1"
+
+        try:
+            consulta = "UPDATE PEDIDOS SET ESTADO = 'finalizado' WHERE ID_PEDIDO = :p1"
+
+            cursor.execute(consulta, datos)
+
+            if cursor.rowcount > 0:
+                mensaje = "0"
+            else:
+                mensaje = "-1"
+
+            self.connection.commit()
+
+        except self.connection.Error as error:
+            print("Error: ", error)
+
+        cursor.close()
+        self.connection.close()
+
+        return mensaje
+
+    def getIdPedido(self, idUsuario):
+        cursor = self.connection.cursor()
+
+        try:
+            consulta = ("select ID_PEDIDO from pedidos where id_cliente = "+ str(idUsuario) +" and estado = 'pendiente'")
+
+            cursor.execute(consulta)
+
+        except self.connection.Error as error:
+            print("Error: ", error)
+
+        return cursor
+
+    def addProducto(self, datos):
+        cursor = self.connection.cursor()
+        mensaje = ""
+
+        try:
+            consulta = "INSERT INTO DETALLE_PEDIDO(ID_DETALLE, ID_PEDIDO, ID_PRODUCTO, CANTIDAD, PRECIO_TOTAL)"
+            consulta += " VALUES (DETALLE_PEDIDO_SEQ.NEXTVAL, :p1, :p2, :p3, :p4 )"
+
+            print(consulta)
+
+            cursor.execute(consulta, datos)
+
+            if cursor.rowcount > 0:
+                mensaje = "Datos insertados satisfactoriamente"
+            else:
+                mensaje = "Error, no se han podido insertar los datos"
+
+            self.connection.commit()
+
+        except self.connection.Error as error:
+            print("Error: ", error)
+
+        cursor.close()
+        self.connection.close()
+
+        return mensaje
+
 class Pedido:
     def __init__(self):
         self.connection = cx_Oracle.connect("system", "pythonoracle", "localhost/XE")

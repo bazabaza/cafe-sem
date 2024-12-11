@@ -41,5 +41,38 @@
       {% endfor %}
   </div>
 
+     <div class="container h-100 py-5">
+         <div class="card">
+             <div class="card-header">Otras direcciones</div>
+             <form method="post" action="cambiarDireccionEnvio">
+                 {% csrf_token %}
+                 <div class="card-body">
+                    <select class="form-select" name="cmbDirecciones" aria-label="Default select example">
+                        {% for id, alias, pCalle, pNumero, pCiudad, pCP in todasDirecciones%}
+                        <option value="{{id}}">{{alias}}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="hidden" value="{{idCliente}}" name="txtIdCliente">
+                    <input type="hidden" value="{{idPedido}}" name="txtIdPedido">
+                 </div>
+                 <div class="card-footer">
+                     <input type="submit" class="btn btn-primary" style="background-color: sienna; border: sienna;" value="Cambiar">
+                 </div>
+             </form>
+         </div>
+     </div>
+
+    <div class="container h-100">
+     <div class="card">
+        <div class="card-body" style="align-self: flex-end;">
+            <form action="terminarPedido" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="{{idPedido}}" name="txtIdPedido">
+                <button type="submit" class="btn btn-warning btn-block btn-lg">Finalizar Pedido</button>
+            </form>
+        </div>
+     </div>
+    </div>
+
 </body>
 </html>
