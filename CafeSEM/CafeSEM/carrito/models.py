@@ -175,3 +175,23 @@ class Pedido:
             print("Error: ", error)
 
         return cursor
+
+
+    def altaPedido(self, id_cliente, id_direccion):
+        cursor = self.connection.cursor()
+        try:
+            ConsultaAlta = (
+                    "INSERT INTO pedidos (ID_PEDIDO, FECHA, ID_CLIENTE, ID_DIRECCION, ESTADO)"
+                    "VALUES (PEDIDOS_SEQ.NEXTVAL, TO_DATE(TO_CHAR(SYSDATE, 'DD/MM/YYYY'), 'DD/MM/YYYY'), :P2, :P3, 'pendiente')")
+
+            datosAlta = (id_cliente, id_direccion)
+            print(datosAlta)
+            cursor.execute(ConsultaAlta, datosAlta)
+            numeroRegistros = cursor.rowcount
+            self.connection.commit()
+
+
+        except self.connection.Error as error:
+                print("Error: ", error)
+                numeroRegistros = error
+        return numeroRegistros

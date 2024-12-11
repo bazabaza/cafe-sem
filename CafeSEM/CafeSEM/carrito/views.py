@@ -20,7 +20,13 @@ def getIdPedido(id):
     pedidos = c.getIdPedido(id)
     pedido = pedidos.fetchone()
 
-    return pedido[0]
+    if pedido is None:
+
+        return 0
+
+    else:
+
+        return pedido[0]
 
 def detalleCarrito(request):
     idUsuario = getIdUsuario(request)
@@ -40,12 +46,31 @@ def detalleCarrito(request):
             'datosDireccion': envio
         }
 
-        return render(request, "carrito.html", contexto)
-
     else:
         # no: creamos un pedido
-        return render(request, "home.html")
+        u = Usuario()
+        direcciones=u.get_direcciones_by_id(idUsuario)
+        #cogemos una direccion por defecto
+        if direcciones.fetchone() is None:
+            #redirigir a crear direccion CAMBIAR
+            return render(request, "carrito.html")
+        else:
+            direccionEnvio=direcciones.fetchone()
+            p = Pedido()
+            p.altaPedido(idUsuario,direccionEnvio[0])
 
+        ca = Carrito()
+        info = ca.detallePedido(idPedido)
+        envio = ca.idsEnvio(idPedido)
+
+        print('Tenemos datos del carrito')
+
+        contexto = {
+            'listadoCompra': info,
+            'datosDireccion': envio
+        }
+
+    return render(request, "carrito.html", contexto)
 
 def detalleCarrito_ANT(request):
     c = Carrito()
@@ -134,6 +159,7 @@ def pedidosAdmin(request):
 def addProductoCarrito(request):
     idUsuario = getIdUsuario(request)
     idPedido = getIdPedido(idUsuario)
+    #comprobar si el pedido es distinto a 0 para crearlo  o no
     idProducto = request.GET['idProd']
     cantidad = 1
     total = request.GET['precio']
