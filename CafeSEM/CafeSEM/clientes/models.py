@@ -1,10 +1,10 @@
 import cx_Oracle
 
-class Usario:
+class Usuario:
     def __init__(self):
         self.connection = cx_Oracle.connect("system", "pythonoracle", "localhost/XE")
 
-    def get_usario(self, email):
+    def get_usuario(self, email):
         cursor = self.connection.cursor()
 
         sql = f"SELECT ID_USUARIO, NOMBRE, EMAIL, CONTRASENIA, TIPO_USUARIO FROM USUARIOS WHERE EMAIL=:email"

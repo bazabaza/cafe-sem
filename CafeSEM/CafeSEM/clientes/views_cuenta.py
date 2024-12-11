@@ -1,7 +1,7 @@
 import re
 
 from django.shortcuts import render, redirect
-from clientes.models import Usario
+from clientes.models import Usuario
 
 
 def validar_email(email):
@@ -17,8 +17,8 @@ def verificar_contrasenia(request):
     email = request.POST['email']
     contrasenia = request.POST['contrasenia']
 
-    usario_model = Usario()
-    cursor = usario_model.get_usario(email)
+    usario_model = Usuario()
+    cursor = usario_model.get_usuario(email)
 
     contexto = dict()
     row = cursor.fetchone()
@@ -47,7 +47,7 @@ def view_cuenta(request):
     email = request.COOKIES.get('email')
     print(email)
 
-    usario_model = Usario()
+    usario_model = Usuario()
     cursor_direcciones = usario_model.get_direcciones(email)
 
     contexto = dict()
