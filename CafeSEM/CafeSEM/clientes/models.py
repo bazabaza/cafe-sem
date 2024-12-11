@@ -29,6 +29,22 @@ class Usuario:
 
         return cursor
 
+class Pedidos:
+    def __init__(self):
+        self.connection = cx_Oracle.connect("system", "pythonoracle", "localhost/XE")
 
     def get_pedidos(self, email):
-        pass
+        cursor = self.connection.cursor()
+
+        sql = ("SELECT P.ID_PEDIDO, P.FECHA, SUM(DP.PRECIO_TOTAL) AS PRECIO_TOTAL FROM "
+               "PEDIDOS P JOIN DETALLE_PEDIDO DP ON P.ID_PEDIDO = DP.ID_PEDIDO "
+               "WHERE P.ID_CLIENTE = (SELECT ID_USUARIO FROM USUARIOS WHERE EMAIL=:email) "
+               "GROUP BY P.ID_PEDIDO, P.FECHA ORDER BY P.FECHA")
+
+        try:
+            cursor.execute(sql, {"email": email})
+        except self.connection.Error as error:
+            print("Error: ", error)
+            return False
+
+        return cursor
