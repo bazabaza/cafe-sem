@@ -1,6 +1,6 @@
 import re
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from clientes.models import Usuario, Pedidos
 
 
@@ -42,6 +42,49 @@ def verificar_contrasenia(request):
 
     return response
 
+def add_direccion_forma(request):
+    return render(request, "clientes/cuenta/add_direccion_forma.html")
+
+def add_direccion(request):
+    error = False
+    calle = request.POST['calle']
+    numero = request.POST['numero']
+    ciudad = request.POST['ciudad']
+    codigo_postal = request.POST['codigo_postal']
+    apodo_direccion = request.POST['ciudad']
+    email = request.COOKIES.get('email')
+
+    if not re.match(r"^[A-Za-zÀ-ÖØ-öø-ÿ\s\.\'\-]+$", calle):
+        error = "Nombre de calle es incorrecto"
+    elif not re.match(r"^\d{1,10}$", numero):
+        error = "Numero de casa es incorrecto"
+    elif not re.match(r"^[A-Za-zÀ-ÖØ-öø-ÿ\s\.\'\-]+$", ciudad):
+        error = "Nombre de ciudad es incorrecto"
+    elif not re.match(r"^[A-Za-z0-9\s-]{3,10}$", codigo_postal):
+        error = "Codigo postal es incorrecto"
+    elif not len(apodo_direccion):
+        error = "Apodo de dirección es incorrecto"
+
+    usuario_model = Usuario()
+
+    params = {
+        'calle': calle,
+        'numero': numero,
+        'ciudad': ciudad,
+        'codigo_postal': codigo_postal,
+        'apodo_direccion': apodo_direccion,
+        'id_cliente': usuario_model.get_usuario_id(email)
+    }
+
+    res = usuario_model.insertar_direccion(params)
+    if not res:
+        error = 'Algo mal con base de datos. Perdone.'
+
+    contexto = {
+        'error': error
+    }
+
+    return render(request, "clientes/cuenta/verificar_direccion.html", contexto)
 
 def view_cuenta(request):
     email = request.COOKIES.get('email')
@@ -57,3 +100,9 @@ def view_cuenta(request):
     contexto['pedidos'] = cursor_pedidos
 
     return render(request, "clientes/cuenta/view_cuenta.html", contexto)
+
+def logout(request):
+    response = render(request, "clientes/cuenta/logout.html")
+    response.delete_cookie('email')
+
+    return response

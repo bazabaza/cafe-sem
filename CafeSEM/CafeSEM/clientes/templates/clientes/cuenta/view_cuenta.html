@@ -34,7 +34,9 @@
     <div class="container" style="margin-top: 150px; width: 600px;">
         <h1 class="text-center">Cuenta</h1>
 
-        <h2>Direcciones</h2>
+        <a href="/clientes/cuenta/logout" class="btn btn-danger btn-sm">Logout</a>
+
+        <h2 style="margin-top: 30px;">Direcciones</h2>
         {% for id_direccion, id_cliente, calle, numero, ciudad, codigo_postal, apodo_direccion in direcciones %}
         <div class="direccion-card">
             <h3>{{ apodo_direccion }}</h3>
@@ -44,7 +46,8 @@
             <a href="#" class="btn btn-danger btn-sm">Remover</a>
         </div>
         {% endfor %}
-        <a href="#" class="btn btn-primary">Añadir nueva</a>
+        <a href="/clientes/cuenta/add_direccion_forma" class="btn btn-primary">Añadir nueva</a>
+
 
         <h2 style="margin-top: 50px;">Pedidos</h2>
 
