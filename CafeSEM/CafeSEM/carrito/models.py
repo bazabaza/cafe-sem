@@ -48,3 +48,28 @@ class Carrito:
             print("Error: ", error)
 
         return cursor
+
+class Pedido:
+    def __init__(self):
+        self.connection = cx_Oracle.connect("system", "pythonoracle", "localhost/XE")
+
+
+    def pedidosAdmin(self):
+
+        cursor = self.connection.cursor()
+
+        try:
+            consulta = ("SELECT p.id_pedido, p.id_cliente, SUM(d.precio_total) AS Total_Pedido, dir.ciudad FROM pedidos p "
+                        " INNER JOIN detalle_pedido d ON p.id_pedido=d.id_pedido"
+                        " INNER JOIN usuarios u ON p.id_cliente=u.id_usuario"
+                        " INNER JOIN direcciones dir ON p.id_direccion=dir.id_direccion"
+                        " GROUP BY P.ID_PEDIDO, P.ID_CLIENTE, dir.ciudad"
+                        " ORDER BY p.id_pedido")
+
+            cursor.execute(consulta)
+
+
+        except self.connection.Error as error:
+            print("Error: ", error)
+
+        return cursor

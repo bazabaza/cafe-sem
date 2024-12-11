@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from carrito.models import Carrito
+from carrito.models import Carrito, Pedido
+from productos.views import listadoProductos
+
 
 def index(request):
     return render(request, "carrito.html")
@@ -34,3 +36,13 @@ def direccionEnvio(request):
     }
 
     return render(request, "direccionEnvio.html", contexto)
+
+def pedidosAdmin(request):
+    p = Pedido()
+    pedidos=p.pedidosAdmin()
+
+    contexto = {
+        'listadoPedidos': pedidos
+    }
+    print(listadoProductos)
+    return render(request, "listaPedidosAdmin.html", contexto)
