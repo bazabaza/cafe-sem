@@ -58,7 +58,7 @@ def detalleCarrito(request):
         #cogemos una direccion por defecto
         if direccionEnvio is None:
             #redirigir a crear direccion CAMBIAR
-            return render(request, "carrito.html")
+            return render(request, "add_direccion_forma.html")
         else:
             print('Entramos en el else')
 
@@ -167,33 +167,42 @@ def addProductoCarrito(request):
     idPedido = getIdPedido(idUsuario)
 
     if idPedido == 0:
+        print("Creamos el Pedido")
         #creamos el pedido
-        pass
-    else:
-        #añadimos el producto
-        idProducto = request.GET['idProd']
-        cantidad = 1
-        total = request.GET['precio']
+        u = Usuario()
+        print('UsuarioId: ' + str(idUsuario))
+        direcciones = u.get_direcciones_by_id(idUsuario)
 
-        #comprobar stock
-        #añadir producto
-        #restar stock
+        direccionEnvio = direcciones.fetchone()
+        # cogemos una direccion por defecto
+        if direccionEnvio is None:
+            # redirigir a crear direccion CAMBIAR
+            return render(request, "add_direccion_forma.html")
+        else:
+            p = Pedido()
+            print("Entramos a crear el pedido")
+            p.altaPedido(idUsuario, direccionEnvio[0])
+            idPedido = getIdPedido(idUsuario)
 
-        c = Carrito()
-        datos = (idPedido, idProducto, cantidad, total)
-        print (datos)
-        result = c.addProducto(datos)
+    #añadimos el producto
+    idProducto = request.GET['idProd']
+    cantidad = 1
+    total = request.GET['precio']
+    # restar stock
+    p = Producto()
+    p.bajarStock(idProducto,cantidad)
+    c = Carrito()
+    datos = (idPedido, idProducto, cantidad, total)
+    result = c.addProducto(datos)
+    print(result)
 
-        print(result)
+    listado = p.listadoProductos()
 
-        p = Producto()
-        listado = p.listadoProductos()
+    contexto = {
+        'mensaje': result,
+        'listado': listado
+    }
 
-        contexto={
-            'mensaje': result,
-            'listado': listado
-        }
-
-        return render(request, "listadoProductos.html", contexto)
+    return render(request, "listadoProductos.html", contexto)
 
 

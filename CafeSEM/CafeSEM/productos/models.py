@@ -86,6 +86,19 @@ class Producto:
 
         return cursor
 
+    def bajarStock(self, idProducto, cantidad):
+        cursor = self.connection.cursor()
+        try:
+            consulta = ("UPDATE productos SET STOCK=(select STOCK from productos where ID_PRODUCTO=:P1)-:P2 WHERE ID_PRODUCTO=:P3")
+
+            cursor.execute(consulta, (idProducto,cantidad,idProducto))
+            self.connection.commit()
+
+        except self.connection.Error as error:
+            print("Error: ", error)
+
+        return cursor
+
 
 class Categoria:
 
