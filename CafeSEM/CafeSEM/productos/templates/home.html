@@ -12,8 +12,22 @@
         <p>Descubre los mejores granos de café del mundo</p>
     </header>
     <nav>
-        <a href="productos">Productos</a>
-        <a href="/clientes/cuenta/iniciar_sesion">Area de clientes</a>
+        <a href="/tienda/productos">Productos</a>
+        <!--<a href="/clientes/cuenta/iniciar_sesion">Area de clientes</a>-->
+
+        <script>
+              function checkCookieEmail() {
+                  let emailCookie = document.cookie.split('; ').find(row => row.startsWith('email='));
+                  if (emailCookie) {
+                      document.write('<a href="/clientes/cuenta/view">Mi cuenta</a>');
+                  } else {
+                      document.write('<a href="/clientes/cuenta/iniciar_sesion">Área de clientes</a>');
+                  }
+              }
+              checkCookieEmail();
+          </script>
+
+
         <!-- <a href="#nosotros">Nosotros</a>
         <a href="#contacto">Contacto</a> -->
     </nav>

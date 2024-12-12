@@ -87,7 +87,7 @@ class Pedidos:
         sql = ("SELECT P.ID_PEDIDO, P.FECHA, SUM(DP.PRECIO_TOTAL) AS PRECIO_TOTAL FROM "
                "PEDIDOS P JOIN DETALLE_PEDIDO DP ON P.ID_PEDIDO = DP.ID_PEDIDO "
                "WHERE P.ID_CLIENTE = (SELECT ID_USUARIO FROM USUARIOS WHERE EMAIL=:email) "
-               "AND P.ESTADO = 'terminado' "
+               "AND P.ESTADO = 'finalizado' "
                "GROUP BY P.ID_PEDIDO, P.FECHA ORDER BY P.FECHA")
 
         try:
