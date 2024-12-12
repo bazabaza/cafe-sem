@@ -84,7 +84,7 @@ class Pedidos:
     def get_pedidos(self, email):
         cursor = self.connection.cursor()
 
-        sql = ("SELECT P.ID_PEDIDO, P.FECHA, SUM(DP.PRECIO_TOTAL) AS PRECIO_TOTAL FROM "
+        sql = ("SELECT P.ID_PEDIDO, TO_DATE(TO_CHAR(P.FECHA, 'DD/MM/YYYY'), 'DD/MM/YYYY'), SUM(DP.PRECIO_TOTAL) AS PRECIO_TOTAL FROM "
                "PEDIDOS P JOIN DETALLE_PEDIDO DP ON P.ID_PEDIDO = DP.ID_PEDIDO "
                "WHERE P.ID_CLIENTE = (SELECT ID_USUARIO FROM USUARIOS WHERE EMAIL=:email) "
                "AND P.ESTADO = 'finalizado' "

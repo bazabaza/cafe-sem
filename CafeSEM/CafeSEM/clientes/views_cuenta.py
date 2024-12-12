@@ -101,12 +101,13 @@ def view_cuenta(request):
 
     pedidos = []
     for id_pedido, fecha, precio in cursor_pedidos:
+        fecha = fecha.strftime("%d/%m/%Y")
         pedido = {
             'id_pedido': id_pedido,
             'fecha': fecha,
             'precio': precio
         }
-
+        print(fecha)
         cursor_productos = pedidos_model.get_productos_de_pedido(id_pedido)
         productos_de_pedido = []
         for producto in cursor_productos:
