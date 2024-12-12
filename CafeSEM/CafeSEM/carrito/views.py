@@ -32,6 +32,7 @@ def detalleCarrito(request):
     idUsuario = getIdUsuario(request)
     idPedido = getIdPedido(idUsuario)
 
+    print('vamos al detalle del carrito')
     #El cliente tiene pedido pendiente
     if idPedido > 0:
         # si: mostramos los datos del carrito
@@ -47,15 +48,20 @@ def detalleCarrito(request):
         }
 
     else:
+        print('no tenemos pedidos')
         # no: creamos un pedido
         u = Usuario()
+        print('UsuarioId: ' + str(idUsuario))
         direcciones=u.get_direcciones_by_id(idUsuario)
+
+        direccionEnvio=direcciones.fetchone()
         #cogemos una direccion por defecto
-        if direcciones.fetchone() is None:
+        if direccionEnvio is None:
             #redirigir a crear direccion CAMBIAR
             return render(request, "carrito.html")
         else:
-            direccionEnvio=direcciones.fetchone()
+            print('Entramos en el else')
+
             p = Pedido()
             p.altaPedido(idUsuario,direccionEnvio[0])
 
@@ -159,29 +165,35 @@ def pedidosAdmin(request):
 def addProductoCarrito(request):
     idUsuario = getIdUsuario(request)
     idPedido = getIdPedido(idUsuario)
-    #comprobar si el pedido es distinto a 0 para crearlo  o no
-    idProducto = request.GET['idProd']
-    cantidad = 1
-    total = request.GET['precio']
 
-    #comprobar stock
-    #añadir producto
-    #restar stock
+    if idPedido == 0:
+        #creamos el pedido
+        pass
+    else:
+        #añadimos el producto
+        idProducto = request.GET['idProd']
+        cantidad = 1
+        total = request.GET['precio']
 
-    c = Carrito()
-    datos = (idPedido, idProducto, cantidad, total)
-    result = c.addProducto(datos)
+        #comprobar stock
+        #añadir producto
+        #restar stock
 
-    print(result)
+        c = Carrito()
+        datos = (idPedido, idProducto, cantidad, total)
+        print (datos)
+        result = c.addProducto(datos)
 
-    p = Producto()
-    listado = p.listadoProductos()
+        print(result)
 
-    contexto={
-        'mensaje': result,
-        'listado': listado
-    }
+        p = Producto()
+        listado = p.listadoProductos()
 
-    return render(request, "listadoProductos.html", contexto)
+        contexto={
+            'mensaje': result,
+            'listado': listado
+        }
+
+        return render(request, "listadoProductos.html", contexto)
 
 

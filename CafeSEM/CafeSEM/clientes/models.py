@@ -66,10 +66,11 @@ class Usuario:
     def get_direcciones_by_id(self, user_id):
         cursor = self.connection.cursor()
 
-        sql = (f"SELECT ID_DIRECCION, ID_CLIENTE, CALLE, NUMERO, CIUDAD, CODIGO_POSTAL, APODO_DIRECCION "
-               f"FROM DIRECCIONES WHERE ID_CLIENTE = (SELECT ID_USUARIO FROM USUARIOS WHERE ID_USUARIO=:user_id)")
+        sql = "SELECT ID_DIRECCION, ID_CLIENTE, CALLE, NUMERO, CIUDAD, CODIGO_POSTAL, APODO_DIRECCION "
+        sql += " FROM DIRECCIONES WHERE ID_CLIENTE = (SELECT ID_USUARIO FROM USUARIOS WHERE ID_USUARIO= " + str(user_id) +")"
+
         try:
-            cursor.execute(sql, {"user_id": user_id})
+            cursor.execute(sql)
         except self.connection.Error as error:
             print("Error: ", error)
             return False
