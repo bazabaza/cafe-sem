@@ -9,4 +9,5 @@ urlpatterns=[
     path('cuenta/add_direccion_forma', views_cuenta.add_direccion_forma, name='add-direccion-forma'),
     path('cuenta/add_direccion', views_cuenta.add_direccion, name='add-direccion'),
     path('cuenta/logout', views_cuenta.logout, name='logout'),
+    path('cuenta/eliminar_direccion', views_cuenta.eliminar_direccion, name='eliminar-direccion'),
 ]

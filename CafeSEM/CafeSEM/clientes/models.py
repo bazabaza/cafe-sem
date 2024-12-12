@@ -50,7 +50,19 @@ class Usuario:
 
         return cursor
 
+    def eliminar_direccion(self, id_direccion):
+        cursor = self.connection.cursor()
 
+        try:
+            consulta = "DELETE FROM DIRECCIONES WHERE ID_DIRECCION = :id_direccion"
+            cursor.execute(consulta, {"id_direccion": id_direccion})
+        except self.connection.Error as error:
+            print("Error: ", error)
+
+        if cursor.rowcount > 0:
+            self.connection.commit()
+
+        return cursor.rowcount
 
     def get_direcciones_by_id(self, user_id):
         cursor = self.connection.cursor()

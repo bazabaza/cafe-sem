@@ -107,3 +107,11 @@ def logout(request):
     response.delete_cookie('email')
 
     return response
+
+def eliminar_direccion(request):
+    id_direccion = request.GET['id_direccion']
+
+    usuario_model = Usuario()
+    usuario_model.eliminar_direccion(id_direccion)
+
+    return render(request, "clientes/cuenta/eliminar_direccion.html")

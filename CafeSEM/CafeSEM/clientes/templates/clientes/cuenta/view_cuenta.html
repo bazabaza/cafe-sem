@@ -43,7 +43,7 @@
             <p>{{ calle }}, {{ numero }}<br>
             {{ ciudad }}<br>
             {{ codigo_postal }}</p>
-            <a href="#" class="btn btn-danger btn-sm">Remover</a>
+            <a href="/clientes/cuenta/eliminar_direccion?id_direccion={{ id_direccion }}" class="btn btn-danger btn-sm">Eliminar</a>
         </div>
         {% endfor %}
         <a href="/clientes/cuenta/add_direccion_forma" class="btn btn-primary">Añadir nueva</a>
