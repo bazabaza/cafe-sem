@@ -29,11 +29,11 @@
                 {% for idProd, nombre, precio, stock, imagen in listado %}
                     <div class="col-md-4">
                         <div class="card my-2" style="background-color: antiquewhite;">
-                            <img src="{% static 'images/' %}{{imagen}}" class="card-img-top" alt="{{nombre}}">
+                            <img src="{% static 'images/' %}{{imagen}}" class="card-img-top" alt="{{nombre}}" style=" width: 293px; height: 294px;">
                             <div class="card-body">
                                 <h5 class="card-title">{{nombre}}</h5>
                                 <p class="card-text">aquí una descripción</p>
-                                <p class="card-text"><strong>{{precio}}</strong></p>
+                                <p class="card-text"><strong>{{precio}} €</strong></p>
                                 <a href="/carrito/addProductoCarrito?idProd={{idProd}}&precio={{precio}}" class="btn btn-primary" style="background-color: sienna; border: sienna;">Comprar</a>
                                 <a href="detalle?id={{idProd}}" class="btn btn-primary" style="background-color: sienna; border: sienna;">Ver Detalles</a>
                             </div>

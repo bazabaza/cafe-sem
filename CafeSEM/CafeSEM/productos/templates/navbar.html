@@ -33,7 +33,7 @@
               function checkCookieEmail() {
                   let emailCookie = document.cookie.split('; ').find(row => row.startsWith('email='));
                   if (emailCookie) {
-                      document.write('<a class="btn btn-black btn-rounded" href="/clientes/cuenta/view"> <i class="fa fa-window-close pe-2" aria-hidden="true"></i>Mí cuenta</a>');
+                      document.write('<a class="btn btn-black btn-rounded" href="/clientes/cuenta/view"> <i class="fa fa-window-close pe-2" aria-hidden="true"></i>Mi cuenta</a>');
                   } else {
                       document.write('<a class="btn btn-black btn-rounded" href="/clientes/cuenta/iniciar_sesion"> <i class="fa fa-user-circle pe-2" aria-hidden="true"></i>Login</a>');
                   }

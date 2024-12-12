@@ -13,7 +13,11 @@ def getIdUsuario(request):
     u = Usuario()
     result = u.get_usuario(email)
     usuario = result.fetchone()
-    return usuario[0]
+
+    if usuario is None:
+        return 0
+    else:
+        return usuario[0]
 
 def getIdPedido(id):
     c = Carrito()
@@ -30,6 +34,11 @@ def getIdPedido(id):
 
 def detalleCarrito(request):
     idUsuario = getIdUsuario(request)
+
+    #si el usuario no esta logueado le mandamos al login
+    if idUsuario == 0:
+        return render(request, "iniciar_sesion.html")
+
     idPedido = getIdPedido(idUsuario)
 
     print('vamos al detalle del carrito')
