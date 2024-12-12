@@ -173,6 +173,10 @@ def pedidosAdmin(request):
 
 def addProductoCarrito(request):
     idUsuario = getIdUsuario(request)
+
+    if idUsuario == 0:
+        return render(request, "iniciar_sesion.html")
+
     idPedido = getIdPedido(idUsuario)
 
     if idPedido == 0:
