@@ -51,10 +51,12 @@
 
         <h2 style="margin-top: 50px;">Pedidos</h2>
 
-        {% for id_pedido, fecha, precio in pedidos %}
+        {% for p in pedidos %}
         <div class="direccion-card">
-            <h3>{{ id_pedido }}</h3>
-            <p>{{ fecha }}, <b>€{{ precio }}</b><br>
+            <h3>€{{ p.precio }}</h3>
+            <p>{{ p.fecha }}<br/>
+            <b>Número de pedido:</b> {{ p.id_pedido }}</p>
+            <p><b>Productos:</b> {{ p.productos }}</p>
         </div>
         {% endfor %}
 

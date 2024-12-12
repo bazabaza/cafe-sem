@@ -97,3 +97,18 @@ class Pedidos:
             return False
 
         return cursor
+
+    def get_productos_de_pedido(self, id_pedido):
+        cursor = self.connection.cursor()
+
+        sql = ("SELECT P.ID_PRODUCTO, P.NOMBRE, P.PRECIO, P.STOCK, P.IMAGEN, P.DESCRIPCION, P.ID_CATEGORIA "
+               "FROM PRODUCTOS P JOIN DETALLE_PEDIDO DP ON P.ID_PRODUCTO = DP.ID_PRODUCTO "
+               "WHERE DP.ID_PEDIDO = :id_pedido")
+
+        try:
+            cursor.execute(sql, {"id_pedido": id_pedido})
+        except self.connection.Error as error:
+            print("Error: ", error)
+            return False
+
+        return cursor
