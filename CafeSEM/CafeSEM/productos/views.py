@@ -46,7 +46,7 @@ def guardarProducto(request):
     p = Producto()
     p.altaProducto(nombre,precio,stock,imagen,descripcion, categoria)
 
-    listadoProductos = p.listadoProductos()
+    listadoProductos = p.listadoGestionProductos()
     c = Categoria()
     listadoCategorias = c.listadoCategorias()
     contexto = {
