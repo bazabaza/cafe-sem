@@ -98,7 +98,25 @@ def view_cuenta(request):
 
     pedidos_model = Pedidos()
     cursor_pedidos = pedidos_model.get_pedidos(email)
-    contexto['pedidos'] = cursor_pedidos
+
+    pedidos = []
+    for id_pedido, fecha, precio in cursor_pedidos:
+        pedido = {
+            'id_pedido': id_pedido,
+            'fecha': fecha,
+            'precio': precio
+        }
+
+        cursor_productos = pedidos_model.get_productos_de_pedido(id_pedido)
+        productos_de_pedido = []
+        for producto in cursor_productos:
+            productos_de_pedido.append(producto[1])
+
+        pedido['productos'] = ', '.join(productos_de_pedido)
+
+        pedidos.append(pedido)
+
+    contexto['pedidos'] = pedidos
 
     return render(request, "clientes/cuenta/view_cuenta.html", contexto)
 
