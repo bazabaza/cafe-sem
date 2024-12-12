@@ -36,7 +36,6 @@ class Usuario:
 
     def insertar_direccion(self, params):
         cursor = self.connection.cursor()
-        print(params)
 
         sql = ("INSERT INTO DIRECCIONES "
                "(ID_DIRECCION, ID_CLIENTE, CALLE, NUMERO, CIUDAD, CODIGO_POSTAL, APODO_DIRECCION) "
