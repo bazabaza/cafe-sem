@@ -134,3 +134,7 @@ def eliminar_direccion(request):
     usuario_model.eliminar_direccion(id_direccion)
 
     return render(request, "clientes/cuenta/eliminar_direccion.html")
+
+
+def formularioRegistro(request):
+    return render(request, "clientes/registro/formularioRegistro.html")
