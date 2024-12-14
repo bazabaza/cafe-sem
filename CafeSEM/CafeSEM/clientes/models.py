@@ -112,3 +112,22 @@ class Pedidos:
             return False
 
         return cursor
+
+    def get_pedido_by_id(self, id):
+        cursor = self.connection.cursor()
+
+
+        sql = ("SELECT P.NOMBRE, P.DESCRIPCION, DP.CANTIDAD, P.PRECIO, DP.PRECIO_TOTAL "
+               "FROM DETALLE_PEDIDO DP INNER JOIN PRODUCTOS P ON P.ID_PRODUCTO = DP.ID_PRODUCTO "
+               "WHERE DP.ID_PEDIDO = :id_pedido")
+
+        try:
+            cursor.execute(sql, {"id_pedido": id})
+            print(sql)
+            print(id)
+        except self.connection.Error as error:
+            print("Error: ", error)
+            return False
+
+        return cursor
+

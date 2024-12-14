@@ -10,5 +10,7 @@ urlpatterns=[
     path('cuenta/add_direccion', views_cuenta.add_direccion, name='add-direccion'),
     path('cuenta/logout', views_cuenta.logout, name='logout'),
     path('cuenta/eliminar_direccion', views_cuenta.eliminar_direccion, name='eliminar-direccion'),
-    path('registro/formularioResgistro', views_cuenta.formularioRegistro, name='eliminar-direccion'),
+    path('registro/formularioResgistro', views_cuenta.formularioRegistro, name='registro'),
+    path('cuenta/detallePedido', views_cuenta.detallePedido, name='detalle-pedido'),
+
 ]

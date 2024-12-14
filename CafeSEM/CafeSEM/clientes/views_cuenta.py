@@ -138,3 +138,14 @@ def eliminar_direccion(request):
 
 def formularioRegistro(request):
     return render(request, "clientes/registro/formularioRegistro.html")
+
+def detallePedido(request):
+    id = request.GET["idPedido"]
+    p = Pedidos()
+    pedidoDatos=p.get_pedido_by_id(id)
+
+    contexto = {
+        'listadoPedido': pedidoDatos
+    }
+
+    return render(request, "clientes/cuenta/detallePedido.html", contexto)
