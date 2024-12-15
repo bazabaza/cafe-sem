@@ -1,4 +1,5 @@
 import cx_Oracle
+import requests
 
 class Producto:
     def __init__(self):
@@ -116,6 +117,29 @@ class Categoria:
             print("Error: ", error)
 
         return cursor
+
+
+class Receta():
+
+    def __init__(self):
+        self.urlOrigen = "https://www.thecocktaildb.com/api/json/v1/1/"
+
+    def listadoRecetas(self):
+        url = "filter.php?i=coffee"
+        response = requests.get(self.urlOrigen + url)
+        jsonResponse = response.json()
+        listado = jsonResponse['drinks']
+
+        return listado
+
+    def elaboracionReceta(self, idReceta):
+        url = "lookup.php?i="+ idReceta
+
+        response = requests.get(self.urlOrigen + url)
+        jsonResponse = response.json()
+        listado = jsonResponse['drinks']
+
+        return listado
 
 
 

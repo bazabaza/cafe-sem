@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from productos.models import Producto, Categoria
+from productos.models import Producto, Categoria, Receta
 
 def index(request):
     return render(request, "home.html")
@@ -119,3 +119,26 @@ def detalleProducto(request):
     }
 
     return render(request, "detalleProducto.html", contexto)
+
+def listadoRecetas(request):
+    r = Receta()
+    listado = r.listadoRecetas()
+
+    #print(listado)
+
+    contexto = {
+        'listadoCompleto': listado
+    }
+
+    return render(request, "listaRecetasCarrousel.html", contexto)
+
+def detalleReceta(request):
+    r = Receta()
+    idReceta = request.GET['id']
+    resultado = r.elaboracionReceta(idReceta)
+
+    contexto = {
+        'pasos': resultado
+    }
+
+    return render(request, "detalleReceta.html", contexto)

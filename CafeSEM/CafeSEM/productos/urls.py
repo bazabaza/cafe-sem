@@ -11,5 +11,7 @@ urlpatterns=[
     path('baja', views.bajaProducto, name="bajaProducto"),
     path('modificarProducto', views.modificarProducto, name="detalleProducto"),
     path('modificarProductoDatos', views.modificarProductoDatos, name="detalleProducto"),
-    path('menu', views.menu, name='menu')
+    path('menu', views.menu, name='menu'),
+    path('listado', views.listadoRecetas, name='listadoRecetas'),
+    path('elaboracion', views.detalleReceta, name='detalleReceta')
 ]
