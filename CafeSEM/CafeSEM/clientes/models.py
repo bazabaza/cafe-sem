@@ -40,6 +40,7 @@ class Usuario:
         sql = ("INSERT INTO DIRECCIONES "
                "(ID_DIRECCION, ID_CLIENTE, CALLE, NUMERO, CIUDAD, CODIGO_POSTAL, APODO_DIRECCION) "
                "VALUES (DIRECCIONES_SEQ.NEXTVAL, :id_cliente, :calle, :numero, :ciudad, :codigo_postal, :apodo_direccion)")
+
         try:
             cursor.execute(sql, params)
             self.connection.commit()

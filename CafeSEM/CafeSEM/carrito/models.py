@@ -137,7 +137,7 @@ class Carrito:
             cursor.execute(consulta, datos)
 
             if cursor.rowcount > 0:
-                mensaje = "Datos insertados satisfactoriamente"
+                mensaje = "OK"
             else:
                 mensaje = "Error, no se han podido insertar los datos"
 
